@@ -22,7 +22,7 @@ public class QuizRunner {
     private final String TITLE_QUIZ = "Введите номер верного ответа:";
     private final String SEPARATOR_STR = ";";
 
-    QuizRunner(DataReader data) {
+    public QuizRunner(DataReader data) {
         this.data = data;
     }
 

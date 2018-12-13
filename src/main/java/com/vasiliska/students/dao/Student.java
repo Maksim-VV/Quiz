@@ -16,7 +16,7 @@ public class Student implements StudentProfile {
 
     List<String> listQuest = Arrays.asList(questionSurname, questionName);
 
-    Student() {
+    public Student() {
     }
 
 }
