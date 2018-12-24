@@ -8,15 +8,18 @@ import java.util.Arrays;
 import java.util.List;
 
 @Data
-public class Student implements StudentProfile {
+public class Student  {
 
     String surname;
     String name;
     int score;
 
-    List<String> listQuest = Arrays.asList(questionSurname, questionName);
+    final String  QUESTION_SURANAME = "Введите свою фамилию:";
+    final String QUESTION_NAME = "Введите своё имя:";
+    final List<String> listQuest;
 
     public Student() {
+        listQuest = Arrays.asList(QUESTION_SURANAME, QUESTION_NAME);
     }
 
 }

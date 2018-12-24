@@ -1,13 +1,23 @@
 package com.vasiliska.students.service;
 
+import lombok.Data;
 
-public interface Question
+import java.util.LinkedList;
+import java.util.List;
+
+@Data
+public class Question
 {
-     String numberQuestion = "";
-     String correctAnswer = "";
-     String question = "";
-     String answerA = "";
-     String answerB = "";
-     String answerC = "";
-     String answerDString = "";
+       private String numberQuestion;
+       private String correctAnswer;
+       private String question;
+       
+       public List<String> answers;
+
+       public  Question()
+       {
+              answers = new LinkedList<String>();
+       }
+
+
 }
