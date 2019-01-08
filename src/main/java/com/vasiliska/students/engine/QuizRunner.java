@@ -5,6 +5,9 @@ import com.vasiliska.students.dao.Student;
 import com.vasiliska.students.service.Question;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Controller;
 
 import javax.xml.soap.SOAPPart;
 import java.io.BufferedReader;
@@ -12,9 +15,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
+@Controller
 public class QuizRunner {
     private int rightAnswer = 0;
+
+    @Autowired
+    private MessageSource  messageSource;
 
     @Getter
     @Setter
@@ -46,6 +54,7 @@ public class QuizRunner {
             }
         }
         System.out.println(TITLE_QUIZ + "\n");
+        System.out.println(messageSource.getMessage("errorFillProfile",null,  new Locale("en")));
         return answerProfile;
     }
 
