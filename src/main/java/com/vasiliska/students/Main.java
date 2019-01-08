@@ -25,7 +25,9 @@ public class Main {
         try
         {
             questionsList = data.readData();
-        } catch (Exception ex) {
+        }
+        catch (Exception ex)
+        {
             System.err.println("Ошибка загрузки списка вопросов.");
         }
 
