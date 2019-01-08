@@ -6,6 +6,7 @@ import com.vasiliska.students.engine.QuizRunner;
 import com.vasiliska.students.service.Question;
 import com.vasiliska.students.service.QuizConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
@@ -17,6 +18,8 @@ import java.util.*;
 public class Main
 {
 
+    public static Locale locale = Locale.getDefault();
+
     public static void main(String[] args) {
 
         AnnotationConfigApplicationContext QuizAnnatationConfig = new AnnotationConfigApplicationContext();
@@ -24,8 +27,10 @@ public class Main
         QuizAnnatationConfig.register(QuizConfig.class);
         QuizAnnatationConfig.refresh();
 
-        System.out.println(QuizAnnatationConfig.getMessage("errorFillProfile",null,  new Locale("en")));
-        System.out.println(QuizAnnatationConfig);
+        locale = Locale.US;
+
+//        System.out.println(QuizAnnatationConfig.getMessage("errorFillProfile",null,  locale));
+//        System.out.println(QuizAnnatationConfig);
        // System.out.println(messageSource);
 
         DataReader data = QuizAnnatationConfig.getBean(DataReader.class);

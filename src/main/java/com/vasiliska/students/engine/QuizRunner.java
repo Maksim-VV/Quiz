@@ -1,5 +1,6 @@
 package com.vasiliska.students.engine;
 
+import com.vasiliska.students.Main;
 import com.vasiliska.students.dao.DataReader;
 import com.vasiliska.students.dao.Student;
 import com.vasiliska.students.service.Question;
@@ -54,7 +55,7 @@ public class QuizRunner {
             }
         }
         System.out.println(TITLE_QUIZ + "\n");
-        System.out.println(messageSource.getMessage("errorFillProfile",null,  new Locale("en")));
+        System.out.println(messageSource.getMessage("errorFillProfile",null,  Main.locale));
         return answerProfile;
     }
 

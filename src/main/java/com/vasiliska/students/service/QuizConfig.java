@@ -12,15 +12,14 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 @Configuration
 public class QuizConfig {
 
-
     @Bean
-       public MessageSource messageSource()
-       {
-        ReloadableResourceBundleMessageSource ms = new ReloadableResourceBundleMessageSource();
-        ms.setBasename("/i18n/bundle");
-        ms.setDefaultEncoding("UTF-8");
-        return ms;
-       }
+    public MessageSource messageSource()
+    {
+       ReloadableResourceBundleMessageSource ms = new ReloadableResourceBundleMessageSource();
+       ms.setBasename("/i18n/bundle");
+       ms.setDefaultEncoding("UTF-8");
+       return ms;
+    }
 
     @Bean
     DataReader dataReader(@Value("quizTest.csv") String fileName) {
