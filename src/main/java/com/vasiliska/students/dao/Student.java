@@ -1,11 +1,10 @@
 package com.vasiliska.students.dao;
 
 
-
 import lombok.Data;
 
 @Data
-public class Student  {
+public class Student {
 
     String surname;
     String name;

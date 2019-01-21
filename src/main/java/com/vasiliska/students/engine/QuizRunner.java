@@ -23,7 +23,7 @@ public class QuizRunner {
     private int rightAnswer = 0;
 
     @Autowired
-    private MessageSource  messageSource;
+    private MessageSource messageSource;
 
     @Getter
     @Setter
@@ -35,66 +35,52 @@ public class QuizRunner {
         this.data = data;
     }
 
-    public List<String> filProfile(List<String> questProfile)
-    {
-        List<String> answerProfile = new ArrayList<>();
+    public List<String> filProfile(List<String> questProfile) {
+        List<String> answerProfile = new ArrayList<String>();
 
-        for (String strQuest : questProfile)
-        {
+        for (String strQuest : questProfile) {
             System.out.println(strQuest);
             BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-            try
-            {
-               answerProfile.add(buffer.readLine());
-            }
-            catch (IOException ex)
-            {
-               System.out.println(messageSource.getMessage("errorFillProfile",null,  Main.locale));
+            try {
+                answerProfile.add(buffer.readLine());
+            } catch (IOException ex) {
+                System.out.println(messageSource.getMessage("errorFillProfile", null, Main.locale));
             }
         }
-          System.out.println(messageSource.getMessage("startQuiz",null,  Main.locale) + "\n");
+        System.out.println(messageSource.getMessage("startQuiz", null, Main.locale) + "\n");
         return answerProfile;
     }
 
     public int quizRun() {
 
-        if (data == null || data.getQuestList() == null)
-        {
+        if (data == null || data.getQuestList() == null) {
             return rightAnswer;
         }
 
         dataQuiz = data.getQuestList();
 
-        for (Question questData : dataQuiz)
-        {
+        for (Question questData : dataQuiz) {
             System.out.println(questData.getNumberQuestion() + " " + questData.getQuestion());
-            
-            questData.answers.stream().forEach(v-> System.out.print(v +  SEPARATOR_STR));
+
+            questData.answers.stream().forEach(v -> System.out.print(v + SEPARATOR_STR));
             System.out.println();
 
             BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-            try
-            {
+            try {
                 String answer = buffer.readLine();
-                if (answer.equals(questData.getCorrectAnswer()))
-                {
+                if (questData.getCorrectAnswer() != null && answer.equals(questData.getCorrectAnswer())) {
                     rightAnswer++;
                 }
-            } catch (IOException ex)
-            {
-                System.out.println(messageSource.getMessage("errorRunQuiz",null,  Main.locale));
+            } catch (IOException ex) {
+                System.out.println(messageSource.getMessage("errorRunQuiz", null, Main.locale));
             }
         }
         return rightAnswer;
     }
 
-    public void writeTotal(Student student, int countQuest)
-    {
-        System.out.println(messageSource.getMessage("finishQuiz",new String[]{student.getName(), String.valueOf(student.getScore()), String.valueOf(countQuest)},  Main.locale));
+    public void writeTotal(Student student, int countQuest) {
+        System.out.println(messageSource.getMessage("finishQuiz", new String[]{student.getName(), String.valueOf(student.getScore()), String.valueOf(countQuest)}, Main.locale));
     }
-
-
-
 
 
 }

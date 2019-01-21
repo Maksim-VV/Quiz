@@ -2,14 +2,16 @@ package com.vasiliska.students.dao;
 
 import com.vasiliska.students.service.Question;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 
 import java.io.*;
 import java.util.*;
 
+@Slf4j
 @Data
 public class DataReader {
-    private String fileName = "quizTestUS.csv";
+    private String fileName;
     private Question quest;
     private List<Question> questList;
     private final String CVS_SPLIT_BY = ";";
@@ -17,9 +19,7 @@ public class DataReader {
     private final int MAX_NUM_ANSWER = 8;
 
 
-
-    public DataReader()
-    {
+    public DataReader() {
         questList = new ArrayList<>();
     }
 
@@ -38,8 +38,7 @@ public class DataReader {
                 quest.setNumberQuestion(currStr[2]);
                 quest.setQuestion(currStr[3]);
 
-                for(int answNum = MIN_NUM_ANSWER; answNum < MAX_NUM_ANSWER; answNum++)
-                {
+                for (int answNum = MIN_NUM_ANSWER; answNum < MAX_NUM_ANSWER; answNum++) {
                     quest.answers.add(currStr[answNum]);
                 }
 
@@ -47,7 +46,7 @@ public class DataReader {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Error run {}", e);
         }
 
         return questList;

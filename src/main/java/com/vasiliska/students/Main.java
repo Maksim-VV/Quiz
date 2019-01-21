@@ -5,18 +5,13 @@ import com.vasiliska.students.dao.Student;
 import com.vasiliska.students.engine.QuizRunner;
 import com.vasiliska.students.service.Question;
 import com.vasiliska.students.service.QuizConfig;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
-import org.springframework.context.MessageSource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Controller;
 
 import java.util.*;
 
-public class Main
-{
+@Slf4j
+public class Main {
 
     public static Locale locale = Locale.getDefault();
 
@@ -27,7 +22,7 @@ public class Main
         QuizAnnatationConfig.refresh();
 
         locale = Locale.US;
-        String fileName = QuizAnnatationConfig.getMessage("fileName",null,  Main.locale);
+        String fileName = QuizAnnatationConfig.getMessage("fileName", null, Main.locale);
 
         DataReader data = QuizAnnatationConfig.getBean(DataReader.class);
         data.setFileName(fileName);
@@ -35,19 +30,17 @@ public class Main
 
         List<Question> questionsList = null;
 
-        try
-        {
+        try {
             questionsList = data.readData();
-        }
-        catch (Exception ex)
-        {
-            System.out.println(QuizAnnatationConfig.getMessage("errorLoadQuiz",null,  Main.locale));
+        } catch (Exception ex) {
+            System.out.println(QuizAnnatationConfig.getMessage("errorLoadQuiz", null, Main.locale));
+            log.error("Error loading the list of questions {}", ex);
         }
 
         QuizRunner quiz = QuizAnnatationConfig.getBean(QuizRunner.class);
 
-        final String QUESTION_SURANAME = QuizAnnatationConfig.getMessage("enterSurname",null,  Main.locale);
-        final String QUESTION_NAME = QuizAnnatationConfig.getMessage("enterName",null,  Main.locale);
+        final String QUESTION_SURANAME = QuizAnnatationConfig.getMessage("enterSurname", null, Main.locale);
+        final String QUESTION_NAME = QuizAnnatationConfig.getMessage("enterName", null, Main.locale);
 
         final List<String> listQuest = Arrays.asList(QUESTION_SURANAME, QUESTION_NAME);
 
@@ -62,7 +55,7 @@ public class Main
         if (questionsList != null) {
             countQuest = questionsList.size();
         }
-        
+
         quiz.writeTotal(student, countQuest);
 
     }

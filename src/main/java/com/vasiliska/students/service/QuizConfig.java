@@ -13,34 +13,27 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 public class QuizConfig {
 
     @Bean
-    public MessageSource messageSource()
-    {
-       ReloadableResourceBundleMessageSource ms = new ReloadableResourceBundleMessageSource();
-       ms.setBasename("/i18n/bundle");
-       ms.setDefaultEncoding("UTF-8");
-       return ms;
+    public MessageSource messageSource() {
+        ReloadableResourceBundleMessageSource ms = new ReloadableResourceBundleMessageSource();
+        ms.setBasename("/i18n/bundle");
+        ms.setDefaultEncoding("UTF-8");
+        return ms;
     }
 
     @Bean
-    DataReader dataReader()
-    {
+    DataReader dataReader() {
         return new DataReader();
     }
 
     @Bean
-    Student student()
-    {
+    Student student() {
         return new Student();
     }
 
     @Bean
-    QuizRunner quizRunner(DataReader dataReader)
-    {
+    QuizRunner quizRunner(DataReader dataReader) {
         return new QuizRunner(dataReader);
     }
-    
 
-
-    
 
 }
