@@ -21,17 +21,12 @@ public class Main
     public static Locale locale = Locale.getDefault();
 
     public static void main(String[] args) {
-
         AnnotationConfigApplicationContext QuizAnnatationConfig = new AnnotationConfigApplicationContext();
 
         QuizAnnatationConfig.register(QuizConfig.class);
         QuizAnnatationConfig.refresh();
 
         locale = Locale.US;
-
-//        System.out.println(QuizAnnatationConfig.getMessage("errorFillProfile",null,  locale));
-//        System.out.println(QuizAnnatationConfig);
-       // System.out.println(messageSource);
 
         DataReader data = QuizAnnatationConfig.getBean(DataReader.class);
         Student student = QuizAnnatationConfig.getBean(Student.class);
@@ -44,18 +39,21 @@ public class Main
         }
         catch (Exception ex)
         {
-            System.err.println("Ошибка загрузки списка вопросов.");
+            System.out.println(QuizAnnatationConfig.getMessage("errorLoadQuiz",null,  Main.locale));
         }
 
         QuizRunner quiz = QuizAnnatationConfig.getBean(QuizRunner.class);
 
-        List<String> profileData = quiz.filProfile(student.getListQuest());
+        final String QUESTION_SURANAME = QuizAnnatationConfig.getMessage("enterSurname",null,  Main.locale);
+        final String QUESTION_NAME = QuizAnnatationConfig.getMessage("enterName",null,  Main.locale);
+
+        final List<String> listQuest = Arrays.asList(QUESTION_SURANAME, QUESTION_NAME);
+
+        List<String> profileData = quiz.filProfile(listQuest);
 
         student.setSurname(profileData.get(0));
         student.setName(profileData.get(1));
         student.setScore(quiz.quizRun());
-
-
 
         int countQuest = 0;
 

@@ -29,7 +29,6 @@ public class QuizRunner {
     @Setter
     private List<Question> dataQuiz;
     private DataReader data;
-    private final String TITLE_QUIZ = "Введите номер верного ответа:";
     private final String TOTAL_QUIZ_STR = "%s, вы ответили правильно на %d из %d вопросов.";
     private final String SEPARATOR_STR = "; ";
 
@@ -47,15 +46,16 @@ public class QuizRunner {
             BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
             try
             {
-                   answerProfile.add(buffer.readLine());
+                  answerProfile.add(buffer.readLine());
             }
             catch (IOException ex)
             {
-                System.err.println("Ошибка заполнения профиля пользователя!");
+                System.out.println(messageSource.getMessage("errorFillProfile",null,  Main.locale));
             }
         }
-        System.out.println(TITLE_QUIZ + "\n");
-        System.out.println(messageSource.getMessage("errorFillProfile",null,  Main.locale));
+        //System.out.println(TITLE_QUIZ + "\n");
+        System.out.println(messageSource.getMessage("startQuiz",null,  Main.locale) + "\n");
+        //System.out.println(messageSource.getMessage("errorFillProfile",null,  Main.locale));
         return answerProfile;
     }
 
@@ -85,14 +85,16 @@ public class QuizRunner {
                 }
             } catch (IOException ex)
             {
-                System.err.println("Ошибка выплолнения викторины!");
+                System.out.println(messageSource.getMessage("errorRunQuiz",null,  Main.locale));
+                //System.err.println("Ошибка выплолнения викторины!");
             }
         }
         return rightAnswer;
     }
 
-    public void writeTotal(Student student, int countQuest){
-       System.out.println(String.format(TOTAL_QUIZ_STR, student.getName(), student.getScore(), countQuest));
+    public void writeTotal(Student student, int countQuest)
+    {
+        System.out.println(messageSource.getMessage("finishQuiz",new String[]{student.getName(), String.valueOf(student.getScore()), String.valueOf(countQuest)},  Main.locale));
     }
 
 
