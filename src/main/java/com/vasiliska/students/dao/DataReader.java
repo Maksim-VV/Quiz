@@ -9,19 +9,17 @@ import java.util.*;
 
 @Data
 public class DataReader {
-    private String fileName = "quizTest.csv";
+    private String fileName = "quizTestUS.csv";
     private Question quest;
     private List<Question> questList;
     private final String CVS_SPLIT_BY = ";";
     private final int MIN_NUM_ANSWER = 4;
     private final int MAX_NUM_ANSWER = 8;
 
-    public DataReader() {
-    }
 
-    public DataReader(String fileName)
+
+    public DataReader()
     {
-        this.fileName = fileName;
         questList = new ArrayList<>();
     }
 

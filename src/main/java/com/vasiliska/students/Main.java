@@ -27,8 +27,10 @@ public class Main
         QuizAnnatationConfig.refresh();
 
         locale = Locale.US;
+        String fileName = QuizAnnatationConfig.getMessage("fileName",null,  Main.locale);
 
         DataReader data = QuizAnnatationConfig.getBean(DataReader.class);
+        data.setFileName(fileName);
         Student student = QuizAnnatationConfig.getBean(Student.class);
 
         List<Question> questionsList = null;

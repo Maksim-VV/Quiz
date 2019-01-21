@@ -22,17 +22,20 @@ public class QuizConfig {
     }
 
     @Bean
-    DataReader dataReader(@Value("quizTest.csv") String fileName) {
-        return new DataReader(fileName);
+    DataReader dataReader()
+    {
+        return new DataReader();
     }
 
     @Bean
-    Student student() {
+    Student student()
+    {
         return new Student();
     }
 
     @Bean
-    QuizRunner quizRunner(DataReader dataReader) {
+    QuizRunner quizRunner(DataReader dataReader)
+    {
         return new QuizRunner(dataReader);
     }
     
