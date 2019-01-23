@@ -17,6 +17,9 @@ public class DataReader {
     private final String CVS_SPLIT_BY = ";";
     private final int MIN_NUM_ANSWER = 4;
     private final int MAX_NUM_ANSWER = 8;
+    private final int NUM_CORRECT_ANSWER = 1;
+    private final int NUM_QUESTION_QUIZ = 2;
+    private final int NUM_STRING_QUESTION = 3;
 
 
     public DataReader() {
@@ -34,9 +37,9 @@ public class DataReader {
             while ((line = buffReader.readLine()) != null) {
                 String[] currStr = line.split(CVS_SPLIT_BY);
                 quest = new Question();
-                quest.setCorrectAnswer(currStr[1]);
-                quest.setNumberQuestion(currStr[2]);
-                quest.setQuestion(currStr[3]);
+                quest.setCorrectAnswer(currStr[NUM_CORRECT_ANSWER]);
+                quest.setNumberQuestion(currStr[NUM_QUESTION_QUIZ]);
+                quest.setQuestion(currStr[NUM_STRING_QUESTION]);
 
                 for (int answNum = MIN_NUM_ANSWER; answNum < MAX_NUM_ANSWER; answNum++) {
                     quest.answers.add(currStr[answNum]);

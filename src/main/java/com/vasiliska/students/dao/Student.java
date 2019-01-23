@@ -6,9 +6,9 @@ import lombok.Data;
 @Data
 public class Student {
 
-    String surname;
-    String name;
-    int score;
+    private String surname;
+    private String name;
+    private int score;
 
     public Student() {
     }

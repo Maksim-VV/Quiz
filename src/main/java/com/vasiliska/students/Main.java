@@ -20,8 +20,7 @@ public class Main {
 
         QuizAnnatationConfig.register(QuizConfig.class);
         QuizAnnatationConfig.refresh();
-
-        locale = Locale.US;
+        
         String fileName = QuizAnnatationConfig.getMessage("fileName", null, Main.locale);
 
         DataReader data = QuizAnnatationConfig.getBean(DataReader.class);
