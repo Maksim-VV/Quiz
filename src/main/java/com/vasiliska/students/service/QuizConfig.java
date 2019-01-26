@@ -9,10 +9,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
 @Configuration
-public class QuizConfig {
+public class QuizConfig
+{
 
     @Bean
-    public MessageSource messageSource() {
+    public MessageSource messageSource()
+    {
         ReloadableResourceBundleMessageSource ms = new ReloadableResourceBundleMessageSource();
         ms.setBasename("/i18n/bundle");
         ms.setDefaultEncoding("UTF-8");
@@ -20,17 +22,14 @@ public class QuizConfig {
     }
 
     @Bean
-    DataReader dataReader() {
+    DataReader dataReader()
+    {
         return new DataReader();
     }
 
     @Bean
-    Student student() {
-        return new Student();
-    }
-
-    @Bean
-    QuizRunner quizRunner(DataReader dataReader) {
+    QuizRunner quizRunner(DataReader dataReader)
+    {
         return new QuizRunner(dataReader);
     }
 

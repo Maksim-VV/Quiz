@@ -18,7 +18,7 @@ public class QuizRunnerTest {
     @Test
     public void filProfile() {
         QuizRunner quizRunner = new QuizRunner(new DataReader());
-        List<String> answerProfile = quizRunner.filProfile(new ArrayList<>());
+        List<String> answerProfile = quizRunner.filProfile();
         Assert.assertEquals(0, answerProfile.size());
     }
 
