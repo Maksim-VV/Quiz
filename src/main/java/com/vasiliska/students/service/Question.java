@@ -11,13 +11,9 @@ public class Question
        private String numberQuestion;
        private String correctAnswer;
        private String question;
-       
        public List<String> answers;
-
        public  Question()
        {
               answers = new LinkedList<String>();
        }
-
-
 }

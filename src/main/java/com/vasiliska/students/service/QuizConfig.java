@@ -6,12 +6,13 @@ import com.vasiliska.students.engine.QuizRunner;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
+@PropertySource("classpath:data.properties")
 @Configuration
 public class QuizConfig
 {
-
     @Bean
     public MessageSource messageSource()
     {

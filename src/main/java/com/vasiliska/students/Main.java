@@ -8,26 +8,28 @@ import com.vasiliska.students.service.Question;
 import com.vasiliska.students.service.QuizConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import java.util.*;
 
 @Slf4j
-public class Main {
-
+public class Main
+{
     public static Locale locale = Locale.getDefault();
 
-    public static void main(String[] args) {
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertyConfigInDev()
+    {
+         return new PropertySourcesPlaceholderConfigurer();
+    }
+
+    public static void main(String[] args)
+    {
         AnnotationConfigApplicationContext quizAnnatationConfig = new AnnotationConfigApplicationContext();
-
-        //locale = Locale.US;
-
         quizAnnatationConfig.register(QuizConfig.class);
         quizAnnatationConfig.refresh();
-        
-        String fileName = quizAnnatationConfig.getMessage("fileName", null, Main.locale);
 
         DataReadable data = quizAnnatationConfig.getBean(DataReader.class);
-        data.setFileName(fileName);
         Student student = new Student();
 
         List<Question> questionsList = null;
@@ -60,9 +62,7 @@ public class Main {
         {
             countQuest = questionsList.size();
         }
-
         quiz.writeTotal(student, countQuest);
-
     }
 
 }

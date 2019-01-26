@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface DataReadable
 {
-      
        String CSV_SPLIT_BY = ";";
        int MIN_NUM_ANSWER = 4;
        int MAX_NUM_ANSWER = 8;
@@ -16,10 +15,6 @@ public interface DataReadable
        int NUM_QUESTION_QUIZ = 2;
        int NUM_STRING_QUESTION = 3;
 
-       //List<Question> questList = null;
-
        List<Question> readData();
        List<Question> getQuestList();
-
-       void setFileName(String name);
 }

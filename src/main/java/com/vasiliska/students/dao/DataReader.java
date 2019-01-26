@@ -1,8 +1,12 @@
 package com.vasiliska.students.dao;
 
+import com.vasiliska.students.Main;
 import com.vasiliska.students.service.Question;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.MessageSource;
 
 import java.io.*;
 import java.util.*;
@@ -11,9 +15,12 @@ import java.util.*;
 @Data
 public class DataReader  implements DataReadable
 {
+    @Value("${db.url}")
+    private String dbUrl;
+    @Autowired
+    private MessageSource messageSource;
     private Question quest;
     private List<Question> questList;
-    String fileName = null;
 
     public DataReader()
     {
@@ -23,7 +30,9 @@ public class DataReader  implements DataReadable
     public List<Question> readData()
     {
         ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource(fileName).getFile());
+        String fileName = messageSource.getMessage("fileName", null, Main.locale);
+
+        File file = new File(classLoader.getResource(String.format(dbUrl,fileName)).getFile());
 
         try (BufferedReader buffReader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF8")))
         {
@@ -48,12 +57,6 @@ public class DataReader  implements DataReadable
             log.error("Error run {}", e);
         }
         return questList;
-    }
-
-
-    public void setFileName()
-    {
-        this.fileName = fileName;
     }
 
 }
