@@ -5,20 +5,24 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class QuizRunnerTest {
 
     @Test
-    public void quizRunTest() {
+    public void quizRunTest()
+    {
         QuizRunner quizRunner = new QuizRunner(new DataReader());
         Assert.assertEquals(0, quizRunner.quizRun());
     }
 
     @Test
-    public void filProfile() {
+    public void fillProfile() 
+    {
         QuizRunner quizRunner = new QuizRunner(new DataReader());
-        List<String> answerProfile = quizRunner.filProfile();
+        quizRunner.setListPersonData(new ArrayList<String>());
+        List<String> answerProfile = quizRunner.fillProfile();
         Assert.assertEquals(0, answerProfile.size());
     }
 

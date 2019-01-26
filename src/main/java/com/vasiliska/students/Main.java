@@ -17,14 +17,16 @@ public class Main {
     public static Locale locale = Locale.getDefault();
 
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext QuizAnnatationConfig = new AnnotationConfigApplicationContext();
+        AnnotationConfigApplicationContext quizAnnatationConfig = new AnnotationConfigApplicationContext();
 
-        QuizAnnatationConfig.register(QuizConfig.class);
-        QuizAnnatationConfig.refresh();
+        //locale = Locale.US;
+
+        quizAnnatationConfig.register(QuizConfig.class);
+        quizAnnatationConfig.refresh();
         
-        String fileName = QuizAnnatationConfig.getMessage("fileName", null, Main.locale);
+        String fileName = quizAnnatationConfig.getMessage("fileName", null, Main.locale);
 
-        DataReadable data = QuizAnnatationConfig.getBean(DataReader.class);
+        DataReadable data = quizAnnatationConfig.getBean(DataReader.class);
         data.setFileName(fileName);
         Student student = new Student();
 
@@ -36,17 +38,17 @@ public class Main {
         }
         catch (Exception ex) 
         {
-            System.out.println(QuizAnnatationConfig.getMessage("errorLoadQuiz", null, Main.locale));
+            System.out.println(quizAnnatationConfig.getMessage("errorLoadQuiz", null, Main.locale));
             log.error("Error loading the list of questions {}", ex);
         }
 
-        QuizRunner quiz = QuizAnnatationConfig.getBean(QuizRunner.class);
+        QuizRunner quiz = quizAnnatationConfig.getBean(QuizRunner.class);
 
         quiz.setSuraname();
         quiz.setName();
         quiz.setPersonData();
 
-        List<String> profileData = quiz.filProfile();
+        List<String> profileData = quiz.fillProfile();
 
         student.setSurname(profileData.get(0));
         student.setName(profileData.get(1));

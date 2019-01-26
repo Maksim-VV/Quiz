@@ -21,6 +21,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
+@Getter
+@Setter
 @Service
 public class QuizRunner
 {
@@ -28,9 +30,6 @@ public class QuizRunner
 
     @Autowired
     private MessageSource messageSource;
-
-    @Getter
-    @Setter
     private List<Question> dataQuiz;
     private List<String> listPersonData;
     private DataReadable data;
@@ -60,9 +59,14 @@ public class QuizRunner
 
 
 
-    public List<String> filProfile()
+    public List<String> fillProfile()
     {
         List<String> answerProfile = new ArrayList<String>();
+
+        if(listPersonData==null || listPersonData.isEmpty())
+        {
+            return answerProfile;
+        }
 
         for (String strQuest : listPersonData)
         {

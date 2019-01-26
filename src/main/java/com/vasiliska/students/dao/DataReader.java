@@ -2,7 +2,6 @@ package com.vasiliska.students.dao;
 
 import com.vasiliska.students.service.Question;
 import lombok.Data;
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
