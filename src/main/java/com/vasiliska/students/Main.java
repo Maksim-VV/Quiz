@@ -8,20 +8,12 @@ import com.vasiliska.students.service.Question;
 import com.vasiliska.students.service.QuizConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import java.util.*;
 
 @Slf4j
 public class Main
 {
     public static Locale locale = Locale.getDefault();
-
-    @Bean
-    public static PropertySourcesPlaceholderConfigurer propertyConfigInDev()
-    {
-         return new PropertySourcesPlaceholderConfigurer();
-    }
 
     public static void main(String[] args)
     {
@@ -54,6 +46,7 @@ public class Main
 
         student.setSurname(profileData.get(0));
         student.setName(profileData.get(1));
+
         student.setScore(quiz.quizRun());
 
         int countQuest = 0;

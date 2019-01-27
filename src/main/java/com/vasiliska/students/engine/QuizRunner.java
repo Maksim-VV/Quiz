@@ -23,15 +23,15 @@ import java.util.List;
 public class QuizRunner
 {
     private int rightAnswer = 0;
-
-    @Autowired
-    private MessageSource messageSource;
     private List<Question> dataQuiz;
     private List<String> listPersonData;
     private DataReader data;
     private final String SEPARATOR_STR = "; ";
     private String suraname;
     private String name;
+
+    @Autowired
+    private MessageSource messageSource;
 
     public QuizRunner(DataReader data)
     {

@@ -6,15 +6,14 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
 @PropertySource("classpath:data.properties")
 @Configuration
-public class QuizConfig
-{
+public class QuizConfig {
     @Bean
-    public MessageSource messageSource()
-    {
+    public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource ms = new ReloadableResourceBundleMessageSource();
         ms.setBasename("/i18n/bundle");
         ms.setDefaultEncoding("UTF-8");
@@ -22,14 +21,17 @@ public class QuizConfig
     }
 
     @Bean
-    DataReaderImp dataReader()
-    {
+    public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
+
+    @Bean
+    DataReaderImp dataReader() {
         return new DataReaderImp();
     }
 
     @Bean
-    QuizRunner quizRunner(DataReaderImp dataReader)
-    {
+    QuizRunner quizRunner(DataReaderImp dataReader) {
         return new QuizRunner(dataReader);
     }
 
