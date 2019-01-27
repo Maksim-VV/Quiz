@@ -40,11 +40,8 @@ public class QuizRunner
         this.data = data;
     }
 
-
-
     public boolean fillProfileStudent()
     {
-
         suraname =  messageSource.getMessage("enterSurname", null, Main.locale);
         name =  messageSource.getMessage("enterName", null, Main.locale);
         listPersonData = Arrays.asList(suraname, name);
@@ -65,7 +62,6 @@ public class QuizRunner
             }
         }
         System.out.println(messageSource.getMessage("startQuiz", null, Main.locale) + "\n");
-
 
         student.setSurname(answerProfile.get(0));
         student.setName(answerProfile.get(1));

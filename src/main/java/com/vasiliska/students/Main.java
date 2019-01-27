@@ -2,7 +2,6 @@ package com.vasiliska.students;
 
 import com.vasiliska.students.dao.DataReader;
 import com.vasiliska.students.dao.DataReaderImp;
-import com.vasiliska.students.dao.Student;
 import com.vasiliska.students.engine.QuizRunner;
 import com.vasiliska.students.service.Question;
 import com.vasiliska.students.service.QuizConfig;

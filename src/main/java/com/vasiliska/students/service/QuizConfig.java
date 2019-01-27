@@ -2,6 +2,7 @@ package com.vasiliska.students.service;
 
 import com.vasiliska.students.dao.DataReaderImp;
 import com.vasiliska.students.engine.QuizRunner;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,7 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 @PropertySource("classpath:data.properties")
 @Configuration
 public class QuizConfig {
+
     @Bean
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource ms = new ReloadableResourceBundleMessageSource();
@@ -26,12 +28,14 @@ public class QuizConfig {
     }
 
     @Bean
-    DataReaderImp dataReader() {
-        return new DataReaderImp();
+    DataReaderImp dataReader(@Value("${db.url}") String dbUrl, MessageSource messageSource)
+    {
+        return new DataReaderImp(dbUrl, messageSource);
     }
 
     @Bean
-    QuizRunner quizRunner(DataReaderImp dataReader) {
+    QuizRunner quizRunner(DataReaderImp dataReader)
+    {
         return new QuizRunner(dataReader);
     }
 

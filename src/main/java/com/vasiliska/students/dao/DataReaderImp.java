@@ -15,10 +15,9 @@ import java.util.*;
 @Data
 public class DataReaderImp implements DataReader
 {
-    @Value("${db.url}")
-    private String dbUrl;
-    @Autowired
+
     private MessageSource messageSource;
+    private String dbUrl;
     private Question quest;
     private List<Question> questList;
     private String CSV_SPLIT_BY = ";";
@@ -28,9 +27,11 @@ public class DataReaderImp implements DataReader
     private final int NUM_QUESTION_QUIZ = 2;
     private final int NUM_STRING_QUESTION = 3;
 
-
-    public DataReaderImp()
+    @Autowired
+    public DataReaderImp(String dbUrl, MessageSource messageSource)
     {
+        this.messageSource = messageSource;
+        this.dbUrl = dbUrl;
         questList = new ArrayList<>();
     }
 
