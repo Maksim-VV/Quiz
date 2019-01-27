@@ -21,6 +21,12 @@ public class DataReaderImp implements DataReader
     private MessageSource messageSource;
     private Question quest;
     private List<Question> questList;
+    private String CSV_SPLIT_BY = ";";
+    private final int MIN_NUM_ANSWER = 4;
+    private final int MAX_NUM_ANSWER = 8;
+    private final int NUM_CORRECT_ANSWER = 1;
+    private final int NUM_QUESTION_QUIZ = 2;
+    private final int NUM_STRING_QUESTION = 3;
 
 
     public DataReaderImp()

@@ -22,7 +22,6 @@ public class Main
         quizAnnatationConfig.refresh();
 
         DataReader data = quizAnnatationConfig.getBean(DataReaderImp.class);
-        Student student = new Student();
 
         List<Question> questionsList = null;
 
@@ -37,17 +36,8 @@ public class Main
         }
 
         QuizRunner quiz = quizAnnatationConfig.getBean(QuizRunner.class);
-
-        quiz.setSuraname();
-        quiz.setName();
-        quiz.setPersonData();
-
-        List<String> profileData = quiz.fillProfile();
-
-        student.setSurname(profileData.get(0));
-        student.setName(profileData.get(1));
-
-        student.setScore(quiz.quizRun());
+        quiz.fillProfileStudent();
+        quiz.quizRun();
 
         int countQuest = 0;
 
@@ -55,7 +45,7 @@ public class Main
         {
             countQuest = questionsList.size();
         }
-        quiz.writeTotal(student, countQuest);
+        quiz.writeTotal(countQuest);
     }
 
 }

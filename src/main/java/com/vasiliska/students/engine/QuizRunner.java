@@ -29,40 +29,27 @@ public class QuizRunner
     private final String SEPARATOR_STR = "; ";
     private String suraname;
     private String name;
+    private Student student;
 
     @Autowired
     private MessageSource messageSource;
 
     public QuizRunner(DataReader data)
     {
+        student = new Student();
         this.data = data;
     }
 
-    public void setSuraname()
+
+
+    public boolean fillProfileStudent()
     {
+
         suraname =  messageSource.getMessage("enterSurname", null, Main.locale);
-    }
-
-    public void setName()
-    {
         name =  messageSource.getMessage("enterName", null, Main.locale);
-    }
-
-    public void setPersonData()
-    {
         listPersonData = Arrays.asList(suraname, name);
-    }
 
-
-
-    public List<String> fillProfile()
-    {
         List<String> answerProfile = new ArrayList<String>();
-
-        if(listPersonData==null || listPersonData.isEmpty())
-        {
-            return answerProfile;
-        }
 
         for (String strQuest : listPersonData)
         {
@@ -78,14 +65,19 @@ public class QuizRunner
             }
         }
         System.out.println(messageSource.getMessage("startQuiz", null, Main.locale) + "\n");
-        return answerProfile;
+
+
+        student.setSurname(answerProfile.get(0));
+        student.setName(answerProfile.get(1));
+        
+        return true;
     }
 
-    public int quizRun()
+    public boolean quizRun()
     {
         if (data == null || data.getQuestList() == null)
         {
-            return rightAnswer;
+            return false;
         }
 
         dataQuiz = data.getQuestList();
@@ -111,10 +103,13 @@ public class QuizRunner
                 System.out.println(messageSource.getMessage("errorRunQuiz", null, Main.locale));
             }
         }
-        return rightAnswer;
+        
+        student.setScore(rightAnswer);
+
+        return true;
     }
 
-    public void writeTotal(Student student, int countQuest)
+    public void writeTotal(int countQuest)
     {
         System.out.println(messageSource.getMessage("finishQuiz", new String[]{student.getName(), String.valueOf(student.getScore()), String.valueOf(countQuest)}, Main.locale));
     }
