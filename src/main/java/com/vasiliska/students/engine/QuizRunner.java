@@ -40,12 +40,11 @@ public class QuizRunner
         this.data = data;
     }
 
+    public QuizRunner(){};
+
     public boolean fillProfileStudent()
     {
-        suraname =  messageSource.getMessage("enterSurname", null, Main.locale);
-        name =  messageSource.getMessage("enterName", null, Main.locale);
-        listPersonData = Arrays.asList(suraname, name);
-
+        setStudentPersonalData();
         List<String> answerProfile = new ArrayList<String>();
 
         for (String strQuest : listPersonData)
@@ -68,6 +67,14 @@ public class QuizRunner
         
         return true;
     }
+
+    private void setStudentPersonalData()
+    {
+        suraname =  messageSource.getMessage("enterSurname", null, Main.locale);
+        name =  messageSource.getMessage("enterName", null, Main.locale);
+        listPersonData = Arrays.asList(suraname, name);
+    }
+
 
     public boolean quizRun()
     {
