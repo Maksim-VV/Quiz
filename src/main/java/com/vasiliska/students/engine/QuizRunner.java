@@ -30,12 +30,12 @@ public class QuizRunner
     private String suraname;
     private String name;
     private Student student;
-
-    @Autowired
     private MessageSource messageSource;
 
-    public QuizRunner(DataReader data)
+    @Autowired
+    public QuizRunner(DataReader data, MessageSource messageSource)
     {
+        this.messageSource = messageSource;
         student = new Student();
         this.data = data;
     }

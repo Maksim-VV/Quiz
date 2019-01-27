@@ -34,9 +34,9 @@ public class QuizConfig {
     }
 
     @Bean
-    QuizRunner quizRunner(DataReaderImp dataReader)
+    QuizRunner quizRunner(DataReaderImp dataReader, MessageSource messageSource)
     {
-        return new QuizRunner(dataReader);
+        return new QuizRunner(dataReader, messageSource);
     }
 
 
