@@ -1,7 +1,7 @@
 package com.vasiliska.students;
 
-import com.vasiliska.students.dao.DataReadable;
 import com.vasiliska.students.dao.DataReader;
+import com.vasiliska.students.dao.DataReaderImp;
 import com.vasiliska.students.dao.Student;
 import com.vasiliska.students.engine.QuizRunner;
 import com.vasiliska.students.service.Question;
@@ -29,7 +29,7 @@ public class Main
         quizAnnatationConfig.register(QuizConfig.class);
         quizAnnatationConfig.refresh();
 
-        DataReadable data = quizAnnatationConfig.getBean(DataReader.class);
+        DataReader data = quizAnnatationConfig.getBean(DataReaderImp.class);
         Student student = new Student();
 
         List<Question> questionsList = null;

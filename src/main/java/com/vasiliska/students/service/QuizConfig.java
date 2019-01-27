@@ -1,7 +1,6 @@
 package com.vasiliska.students.service;
 
-import com.vasiliska.students.dao.DataReader;
-import com.vasiliska.students.dao.Student;
+import com.vasiliska.students.dao.DataReaderImp;
 import com.vasiliska.students.engine.QuizRunner;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -23,13 +22,13 @@ public class QuizConfig
     }
 
     @Bean
-    DataReader dataReader()
+    DataReaderImp dataReader()
     {
-        return new DataReader();
+        return new DataReaderImp();
     }
 
     @Bean
-    QuizRunner quizRunner(DataReader dataReader)
+    QuizRunner quizRunner(DataReaderImp dataReader)
     {
         return new QuizRunner(dataReader);
     }

@@ -6,15 +6,13 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 //@DisplayName()
 public class DataReaderTest {
 
     @Test
     public void readData() {
 
-        DataReader dataReader = new DataReader();
+        DataReaderImp dataReader = new DataReaderImp();
         //dataReader.setFileName("quizTestUS.csv");
 
         List<Question> listQuestion = dataReader.readData();
