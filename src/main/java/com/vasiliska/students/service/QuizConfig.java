@@ -1,5 +1,6 @@
 package com.vasiliska.students.service;
 
+import com.vasiliska.students.dao.DataReader;
 import com.vasiliska.students.dao.DataReaderImp;
 import com.vasiliska.students.engine.QuizRunner;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,15 +29,15 @@ public class QuizConfig {
     }
 
     @Bean
-    DataReaderImp dataReader(@Value("${db.url}") String dbUrl, MessageSource messageSource)
+    DataReader dataReader(@Value("${db.url}") String dbUrl, MessageSource messageSource)
     {
         return new DataReaderImp(dbUrl, messageSource);
     }
 
     @Bean
-    QuizRunner quizRunner(DataReaderImp dataReader, MessageSource messageSource)
+    QuizRunner quizRunner(MessageSource messageSource)
     {
-        return new QuizRunner(dataReader, messageSource);
+        return new QuizRunner(messageSource);
     }
 
 
