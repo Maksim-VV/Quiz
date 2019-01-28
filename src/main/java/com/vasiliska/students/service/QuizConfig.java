@@ -29,14 +29,12 @@ public class QuizConfig {
     }
 
     @Bean
-    DataReader dataReader(@Value("${db.url}") String dbUrl, MessageSource messageSource)
-    {
+    DataReader dataReader(@Value("${db.url}") String dbUrl, MessageSource messageSource) {
         return new DataReaderImp(dbUrl, messageSource);
     }
 
     @Bean
-    QuizRunner quizRunner(MessageSource messageSource)
-    {
+    QuizRunner quizRunner(MessageSource messageSource) {
         return new QuizRunner(messageSource);
     }
 
