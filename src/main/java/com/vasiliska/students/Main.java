@@ -11,7 +11,6 @@ import java.util.*;
 @Slf4j
 public class Main
 {
-    public static Locale locale = Locale.getDefault();
 
     public static void main(String[] args)
     {

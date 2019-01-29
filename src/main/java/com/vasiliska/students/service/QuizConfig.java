@@ -11,9 +11,13 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
+import java.util.Locale;
+
 @PropertySource("classpath:data.properties")
 @Configuration
 public class QuizConfig {
+
+    public Locale locale = Locale.getDefault();
 
     @Bean
     public MessageSource messageSource() {
@@ -29,13 +33,16 @@ public class QuizConfig {
     }
 
     @Bean
-    DataReader dataReader(@Value("${db.url}") String dbUrl, MessageSource messageSource) {
-        return new DataReaderImp(dbUrl, messageSource);
+    DataReader dataReader(@Value("${db.url}") String dbUrl, MessageSource messageSource)
+    {
+        String fileName = messageSource.getMessage("fileName", null, locale);
+        fileName = String.format(dbUrl, fileName);
+        return new DataReaderImp(fileName, messageSource);
     }
 
     @Bean
     QuizRunner quizRunner(MessageSource messageSource) {
-        return new QuizRunner(messageSource);
+        return new QuizRunner(messageSource, locale);
     }
 
 

@@ -8,5 +8,4 @@ import java.util.List;
 public interface DataReader
 {
        List<Question> readData();
-       List<Question> getQuestList();
 }

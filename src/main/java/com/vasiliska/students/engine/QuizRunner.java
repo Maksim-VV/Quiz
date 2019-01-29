@@ -17,6 +17,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 @Slf4j
 @Getter
@@ -32,17 +33,18 @@ public class QuizRunner {
     private String name;
     private Student student;
     private MessageSource messageSource;
+    private Locale locale;
 
 
     @Autowired
-    public QuizRunner(MessageSource messageSource) {
+    public QuizRunner(MessageSource messageSource, Locale locale) {
         this.messageSource = messageSource;
+        this.locale = locale;
         student = new Student();
     }
 
     public QuizRunner()
-    {
-    }
+    { }
 
     public boolean fillProfileStudent() {
         setStudentPersonalData();
@@ -54,10 +56,10 @@ public class QuizRunner {
             try {
                 answerProfile.add(buffer.readLine());
             } catch (IOException ex) {
-                System.out.println(messageSource.getMessage("errorFillProfile", null, Main.locale));
+                System.out.println(messageSource.getMessage("errorFillProfile", null, locale));
             }
         }
-        System.out.println(messageSource.getMessage("startQuiz", null, Main.locale) + "\n");
+        System.out.println(messageSource.getMessage("startQuiz", null, locale) + "\n");
 
         student.setSurname(answerProfile.get(0));
         student.setName(answerProfile.get(1));
@@ -66,8 +68,8 @@ public class QuizRunner {
     }
 
     private void setStudentPersonalData() {
-        suraname = messageSource.getMessage("enterSurname", null, Main.locale);
-        name = messageSource.getMessage("enterName", null, Main.locale);
+        suraname = messageSource.getMessage("enterSurname", null, locale);
+        name = messageSource.getMessage("enterName", null, locale);
         listPersonData = Arrays.asList(suraname, name);
     }
 
@@ -78,8 +80,6 @@ public class QuizRunner {
         {
             return false;
         }
-
-        //dataQuiz = data.getQuestList();
 
         for (Question questData : dataQuiz)
         {
@@ -95,7 +95,7 @@ public class QuizRunner {
                     rightAnswer++;
                 }
             } catch (IOException ex) {
-                System.out.println(messageSource.getMessage("errorRunQuiz", null, Main.locale));
+                System.out.println(messageSource.getMessage("errorRunQuiz", null, locale));
             }
         }
 
@@ -113,7 +113,7 @@ public class QuizRunner {
           countQuest = dataQuiz.size();
        }
 
-        System.out.println(messageSource.getMessage("finishQuiz", new String[]{student.getName(), String.valueOf(student.getScore()), String.valueOf(countQuest)}, Main.locale));
+        System.out.println(messageSource.getMessage("finishQuiz", new String[]{student.getName(), String.valueOf(student.getScore()), String.valueOf(countQuest)}, locale));
     }
 
     public void loadQuizData(DataReader data) {
@@ -123,7 +123,7 @@ public class QuizRunner {
         }
          catch (Exception ex)
         {
-            System.out.println(messageSource.getMessage("errorLoadQuiz", null, Main.locale));
+            System.out.println(messageSource.getMessage("errorLoadQuiz", null, locale));
             log.error("Error loading the list of questions {}", ex);
         }
 

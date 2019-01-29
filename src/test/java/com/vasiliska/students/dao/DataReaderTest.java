@@ -14,8 +14,7 @@ public class DataReaderTest {
     public void readData()
     {
         DataReader dataReader = new DataReaderImp();
-        ((DataReaderImp) dataReader).setFileName("en_US");
-        ((DataReaderImp) dataReader).setDbUrl("quizTest%s.csv");
+        ((DataReaderImp) dataReader).setFileName("quizTesten_US.csv");
 
         List<Question> listQuestion = dataReader.readData();
         int sizeList =  listQuestion.size();

@@ -1,6 +1,5 @@
 package com.vasiliska.students.dao;
 
-import com.vasiliska.students.Main;
 import com.vasiliska.students.service.Question;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +15,6 @@ import java.util.List;
 public class DataReaderImp implements DataReader {
     private String fileName;
     private MessageSource messageSource;
-    private String dbUrl;
     private Question quest;
     private List<Question> questList;
     private String CSV_SPLIT_BY = ";";
@@ -27,11 +25,10 @@ public class DataReaderImp implements DataReader {
     private final int NUM_STRING_QUESTION = 3;
 
     @Autowired
-    public DataReaderImp(String dbUrl, MessageSource messageSource) {
+    public DataReaderImp(String fileName, MessageSource messageSource) {
         this.messageSource = messageSource;
-        this.dbUrl = dbUrl;
         questList = new ArrayList<>();
-        this.fileName = messageSource.getMessage("fileName", null, Main.locale);
+        this.fileName = fileName;
     }
 
     public DataReaderImp() {
@@ -40,7 +37,7 @@ public class DataReaderImp implements DataReader {
 
     public List<Question> readData() {
         ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource(String.format(dbUrl, fileName)).getFile());
+        File file = new File(classLoader.getResource(fileName).getFile());
 
         try (BufferedReader buffReader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF8"))) {
             String line = null;
